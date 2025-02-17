@@ -3,6 +3,10 @@ import { useRouter } from "next/router";
 import { supabase } from "../utils/supabaseClient";
 import BoatBoard from "../components/BoatBoard";
 
+export const getServerSideProps = async () => {
+  return { props: {} };
+};
+
 const Home = () => {
   const [session, setSession] = useState(null);
   const [role, setRole] = useState(null);
@@ -60,3 +64,5 @@ const Home = () => {
 };
 
 export default Home;  // ✅ Placer l'export ici, à la fin du fichier
+
+
