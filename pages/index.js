@@ -59,6 +59,4 @@ const Home = () => {
   );
 };
 
-export default Home;
-
-export default Home;
+export default Home;  // ✅ Placer l'export ici, à la fin du fichier
