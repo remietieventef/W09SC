@@ -3,38 +3,22 @@ import { useRouter } from "next/router";
 import { supabase } from "../utils/supabaseClient";
 import BoatBoard from "../components/BoatBoard";
 
+
 const Home = () => {
-  const [session, setSession] = useState(null);
-  const [role, setRole] = useState(null);
-  const router = useRouter();
-
+  // Vérification des variables d'environnement en local
   useEffect(() => {
-    const fetchSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setSession(session);
-
-      if (session) {
-        const { data, error } = await supabase
-          .from("profiles")
-          .select("role")
-          .eq("id", session.user.id)
-          .single();
-
-        if (!error) setRole(data.role);
-      }
-    };
-    fetchSession();
+    console.log("🔍 Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+    console.log("🔍 Supabase Key:", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   }, []);
 
-  const handleLogin = async () => {
-    await supabase.auth.signInWithOAuth({ provider: "google" });
-  };
+  return (
+    <div>
+      <h1>Boat Race Board</h1>
+    </div>
+  );
+};
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setSession(null);
-    setRole(null);
-  };
+export default Home;
 
   return (
     <div className="relative w-full h-screen bg-blue-100 p-4">
